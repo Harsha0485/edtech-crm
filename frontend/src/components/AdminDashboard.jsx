@@ -19,7 +19,7 @@ function AdminDashboard() {
             const token = sessionStorage.getItem("adminToken");
 
             const response = await axios.get(
-                "http://127.0.0.1:8000/api/inquiries/admin/inquiries/",
+                `${API_URL}/api/inquiries/admin/inquiries/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -55,12 +55,14 @@ function AdminDashboard() {
         navigate("/admin");
     };
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const handleStatusChange = async (id, newStatus) => {
         try {
             const token = sessionStorage.getItem("adminToken");
 
             await axios.post(
-                `http://127.0.0.1:8000/api/inquiries/admin/inquiries/${id}/status/`,
+                `${API_URL}/api/inquiries/admin/inquiries/${id}/status/`,
                 { status: newStatus },
                 {
                     headers: {
